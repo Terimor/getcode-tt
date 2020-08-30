@@ -22,7 +22,7 @@ trait ParsingQueue {
         curl_close($curl);
 
         if ($httpCode !== 200) {
-            Log::error("Request to url({$this->url}) has.");
+            Log::error("Request to url({$this->url}) has failed.");
         }
 
         $doc = new \DOMDocument();
