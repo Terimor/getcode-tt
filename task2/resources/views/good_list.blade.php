@@ -20,7 +20,6 @@
             <th>Brand</th>
             <th>Categories</th>
             <th>Link</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -28,11 +27,10 @@
         <tr>
             <td>{{ $good->id }}</td>
             <td>{{ $good->sku }}</td>
-            <td>{{ $good->name }}</td>
+            <td><a href="{{ route('good_item', ['good' => $good->id]) }}" target="_blank">{{ $good->name }}</a></td>
             <td>{{ $good->brand }}</td>
             <td>{{ implode('->', $good->categories) }}</td>
             <td><a href="{{ $good->link }}" target="_blank">shop</a></td>
-            <td><a href="{{ route('good_item', ['good' => $good->id]) }}">more</a></td>
         </tr>
         @endforeach
     </tbody>
