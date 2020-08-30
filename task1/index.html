@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetCode TASK1</title>
+</head>
+
+<body>
+    <button type="button" id="loadButton" onclick="loadButton()">Click on me</button>
+    <div id="contentDiv"></div>
+    <script>
+        function loadButton() {
+            const requestUrl = 'https://nowdialogue.com/api/merchant/48/widget/presets/86';
+            const contentDiv = document.getElementById('contentDiv');
+
+            contentDiv.innerHTML = '';
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', requestUrl);
+            xhr.responseType = 'json';
+
+            xhr.send();
+
+            xhr.onload = () => {
+                if (xhr.status != '200') {
+                    alert(`Request failed. Status - ${xhr.status}`);
+                    return;
+                }
+
+                const gottenElement = document.createRange().createContextualFragment(xhr.response);
+                contentDiv.appendChild(gottenElement);
+            }
+
+            xhr.onerror = () => {
+                alert('Bad internet connection');
+            }
+        }
+    </script>
+</body>
+
+</html>
